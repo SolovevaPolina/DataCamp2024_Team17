@@ -1,4 +1,4 @@
-name: ramp-template-kit
+name: ramp-supercondictivty-temperature
 channels:
   - conda-forge
 dependencies:
@@ -7,6 +7,7 @@ dependencies:
   - numpy
   - pandas
   - scikit-learn>=1.4
+  - ucimlrepo
   - pip
   - pip:
     - ramp-workflow
