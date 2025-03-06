@@ -36,7 +36,6 @@ def save_data(X_train, X_test, X_secret_test, y_train, y_test, y_secret_test):
     X_test_df['target'] = y_test
     X_secret_test_df = pd.DataFrame(X_secret_test)
     X_secret_test_df['target'] = y_secret_test
-
     X_train_df.to_csv(DATA_PATH / 'X_train.csv', index=False)
     X_test_df.to_csv(DATA_PATH / 'X_test.csv', index=False)
     X_secret_test_df.to_csv(DATA_PATH / 'X_secret_test.csv', index=False)
@@ -47,5 +46,6 @@ if __name__ == '__main__':
         DATA_PATH.mkdir()
 
     X, y = load_data()
-    X_train, X_test, X_secret_test, y_train, y_test, y_secret_test = split_data(X, y)
+    X_train, X_test, X_secret_test, y_train, y_test, y_secret_test = \
+        split_data(X, y)
     save_data(X_train, X_test, X_secret_test, y_train, y_test, y_secret_test)
