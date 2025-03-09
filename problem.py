@@ -1,5 +1,6 @@
 import rampwf as rw
 
+import numpy as np
 import pandas as pd
 from pathlib import Path
 
@@ -14,21 +15,20 @@ Predictions = rw.prediction_types.make_regression()
 workflow = rw.workflows.Estimator()
 
 
-# define the mean squared error score (specific to the competition)
-class MSE(rw.score_types.BaseScoreType):
+# define the root mean squared error score (specific to the competition)
+class RMSE(rw.score_types.BaseScoreType):
     is_lower_the_better = True
     minimum = 0.0
     maximum = float('inf')
 
-    def __init__(self, name='mse', precision=2):
+    def __init__(self, name='rmse'):
         self.name = name
-        self.precision = precision
 
     def score_function(self, ground_truths, predictions):
-        return ((ground_truths - predictions) ** 2).mean()
+        return np.sqrt(((ground_truths - predictions) ** 2).mean())
 
 score_types = [
-    MSE(name='mse', precision=2),
+    RMSE(name='rmse'),
 ]
 
 
